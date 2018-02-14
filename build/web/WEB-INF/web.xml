@@ -4,9 +4,17 @@
         <servlet-name>ProductController</servlet-name>
         <servlet-class>edu.wctc.ycheema.homework3.controller.ProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProdController</servlet-name>
+        <servlet-class>edu.wctc.ycheema.homework3.controller.ProdController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/productController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProdController</servlet-name>
+        <url-pattern>/ProdController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

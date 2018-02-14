@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dell
  */
-@WebServlet(name = "ProductController", urlPatterns = {"/ProductController"})
-public class ProductController extends HttpServlet {
+public class ProdController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +39,10 @@ public class ProductController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductController</title>");            
+            out.println("<title>Servlet ProdController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProdController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,31 +60,32 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductService prodService = new ProductService();
-        RequestDispatcher dispatcher = null;
         
-        String id = request.getParameter("id");
-        String search = request.getParameter("search");
-        if(id != null){
-            Product name = prodService.getName(id);
-            request.setAttribute("name", name);
-            dispatcher = request.getRequestDispatcher("/ProductList.jsp");
-            //go to name Detail.jsp
-        }else if(search != null){
-            List<Product> prodList = prodService.findNames(search);
-            request.setAttribute("productList", prodList);
-            dispatcher = request.getRequestDispatcher("/ProductList.jsp");
-            //go to nameList.jsp
-        }else{
-            List<Product> prodList = prodService.getAllNames();
-            request.setAttribute("prodList", prodList);
-            dispatcher = request.getRequestDispatcher("/productList.jsp");
-        }
-         
-         dispatcher.forward(request, response);
-         
+        ProductService nameService = new ProductService();
+		RequestDispatcher dispatcher = null;
+
+		String id = request.getParameter("id");
+		String search = request.getParameter("search");
+		if (id != null) {
+			Product name = nameService.getName(id);
+			request.setAttribute("name", name);
+			dispatcher =
+				request.getRequestDispatcher("/prodDetail.jsp");
+		} else if (search != null) {
+			List<Product> nameList = nameService.findNames(search);
+			request.setAttribute("prodList", nameList);
+			dispatcher =
+				request.getRequestDispatcher("/prodList.jsp");
+		} else {
+			List<Product> nameList = nameService.getAllNames();
+			request.setAttribute("prodList", nameList);
+			dispatcher =
+				request.getRequestDispatcher("/prodList.jsp");
+		}
+
+		dispatcher.forward(request, response);
+        
     }
-       
 
     /**
      * Handles the HTTP <code>POST</code> method.

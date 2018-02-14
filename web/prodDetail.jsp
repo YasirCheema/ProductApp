@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Feb 6, 2018, 6:25:23 PM
+    Document   : nameDetail
+    Created on : Feb 6, 2018, 8:25:05 PM
     Author     : Yasir Cheema
 --%>
 
@@ -12,10 +12,6 @@
 		<title>JSP Page</title>
 	</head>
 	<body>
-		<h1>Search!</h1>
-		<form method="get" action="ProdController">
-			<input type="text" name="search"/>
-			<input type="submit" value="Search" />
-		</form>
+		<h1>Name Detail!</h1>
 	</body>
 </html>
